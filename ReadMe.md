@@ -9,3 +9,5 @@
 -In addition it takes the two numbers and adds them.One can put the input horizontally or vertically.
 
 -In calculating the averaage it takes the number of values,adds them and divides by the number of values present.
+
+I used HTML/CSS to style the table and for the logic,I used JavaScript.
