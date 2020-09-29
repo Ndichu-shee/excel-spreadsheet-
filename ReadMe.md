@@ -5,3 +5,7 @@
 -The spreadsheet takes both decimal,negative and positive numbers.The results from the two values is shown on top of the spreadsheet.
 
 -I was able to do the sum and average operations and the results are accurate.It also checks if the input is a strings and returns a Nan since strings and integers cannot work together.
+
+-In addition it takes the two numbers and adds them.One can put the input horizontally or vertically.
+
+-In calculating the averaage it takes the number of values,adds them and divides by the number of values present.
