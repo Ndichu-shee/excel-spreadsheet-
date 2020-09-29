@@ -1,0 +1,208 @@
+
+<!Doctype  html>
+<html>
+
+<head>
+    <style> 
+    
+        table,
+        td,
+        th {
+            border: 0.1px solid black;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td {
+            padding: 0;
+        }
+        
+        td>input {
+            width: 100%;
+            overflow-x: visible;
+        }
+        
+        th {
+            height: 50px;
+            width: 30px;
+        }
+        .outpuut{
+            width: 100%;
+            padding: 10px;
+            margin: 10px;
+        }
+        .outpuut > input{
+            width: 60%;
+        }
+    </style>
+
+</head>
+
+<body>
+   
+    <div class="outpuut">
+        <label for="output">outpuut</label>
+        <input  id ='outpu'type="text">
+        
+    </div>
+
+    <div id="div1">
+
+        <table id="table1">
+
+        </table>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    
+    
+    <script>
+        $(document).ready(function() { 
+            var numbes =[];
+            var str = [];
+
+
+
+           
+            var letters = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+            function tablee() { 
+                $('#table1').append('<thead><tr></tr></thead><tbody></tbody>')
+                $thead = $('#table1 > thead > tr:first'); 
+
+                for (var i = 0; i < letters.length; i++) { 
+                    $thead.append(`<th> ${letters[i]} </th>`);
+
+
+                }
+            }
+
+            function addrow() { 
+                for (var k = 1; k <= 50; k++) { 
+
+                    var m = `<tr><td>${k}</td><td><input type='text' ></td> <td><input type='text' ></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td>
+                        <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td>
+                        <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td>
+                        <td><input type='text'></td><td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td> <td><input type='text'></td></tr>`
+
+                    var tr = 1; 
+                    $('#table1 tr ').each(function() {
+                        var td = 1; 
+                        $(this).find('td').each(function() { 
+
+                            $(this).attr('name', `${findIndex(($(this).index()))}${ $(this).parent().index('tr')} `)
+                            td++;
+                        })
+                        tr++;
+                    })
+
+                    $('#table1').append(m);
+
+
+
+                }
+            }
+
+            function findIndex(k) { 
+                for (i = 1; i < letters.length; i++) { 
+                    return (letters[k])
+                }
+            }
+
+            function onfoc() {
+                $(" tr input").click(function() {
+                    console.log($(this).val());  
+                })   ;            
+                
+            }
+
+          
+
+            function foc() { 
+                $('#table1 tr input ').on({
+                    change: function() {
+                        var k = ($(this).val())
+                        if (k != "") {
+                            if (k == 'sum()') {
+                                if (numbes.length != 0) {
+                                    sum();
+                                }
+                            }else if(k == 'avg()'){
+                                if(numbes.length != 0){
+                                    avg();
+                                }
+                            }else {
+                                check(k)
+                                var m = $(this).parent().attr('name');
+
+                            }
+
+                        }
+
+                    },
+
+
+                    focus: function() {
+                        $(this).css('background-color', 'blue');
+                    },
+                    blur: function() {
+                        $(this).css('background-color', "white")
+                    }
+                })
+
+            }
+
+            function check(x) {    
+             
+                
+                 numbes.push (Number(x))   ;                 
+                
+            }
+
+            function sum() {
+                var sum = 0;
+                for (var i = 0; i < numbes.length; i++) {      
+                       console.log(numbes[i])                  
+                    sum += numbes[i];
+                }
+
+               $("#outpu").attr("value",sum)
+                        }
+                        
+
+            function avg() {
+                var average = 0;
+                var total  = 0;
+                for(var i =0; i < numbes.length;i++){
+                    total += numbes[i]
+                    average = total/numbes.length;
+                   
+                }
+                $('#outpu').attr('value',average)
+                
+
+            }
+
+
+
+            
+
+
+            tablee();
+            addrow();
+            findIndex();
+            onfoc();
+            foc();
+            
+
+
+        });
+    </script>
+
+</body>
+
+</html>
